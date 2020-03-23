@@ -17,7 +17,7 @@
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+          <a href="{{ route('manageuser') }}" class="nav-link {{ Route::currentRouteNamed('manageuser') ? 'active' : '' }}">
               <i class="fas fa-users"></i>
               <p>
                 Users

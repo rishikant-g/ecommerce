@@ -4,3 +4,7 @@
 .brand-text.font-weight-light{
   color: #000000;
 }
+
+.validation-error{
+  color:red;
+}

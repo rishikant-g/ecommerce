@@ -29,6 +29,10 @@ Route::get('/show/{id}/user',function($id){
 
 
 
-Auth::routes();
+Auth::routes(["register" => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/manage-users','Admin\User\UserController@index')->name('manageuser');
+Route::get('/add-users','Admin\User\UserController@create')->name('adduser');
+Route::post('/store-users','Admin\User\UserController@store')->name('storeuser');
