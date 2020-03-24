@@ -6,8 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Category;
+use Illuminate\Support\Facades\Gate;
+
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
         
@@ -31,7 +39,16 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('Admin.Category.add-category');
+        $response = Gate::inspect('add-category', \Auth::user());
+
+        if ($response->allowed()) {
+            return view('Admin.Category.add-category');
+        } else {
+            echo $response->message();
+        }
+            
+        
+        
     }
 
     public function store(Request $request)

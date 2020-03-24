@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/manage-users','Admin\User\UserController@index')->name('manageuser');
 Route::get('/add-users','Admin\User\UserController@create')->name('adduser');
 Route::post('/store-users','Admin\User\UserController@store')->name('storeuser');
-Route::get('/edit/{$id}/user','Admin\User\UserController@show');
+Route::get('/edit/{id}/user','Admin\User\UserController@show');
 Route::post('/delete-user','Admin\User\UserController@deleteUser');
 
 Route::get('/manage-category','Admin\Category\CategoryController@index')->name('managecategory');
@@ -37,3 +37,6 @@ Route::post('/delete-category','Admin\Category\CategoryController@destroy');
 
 
 Route::get('/manage-banner','Admin\Banner\BannerController@index')->name('managebanner');
+Route::get('/add-banner','Admin\Banner\BannerController@create')->name('create.banner');
+Route::post('/store-banner','Admin\Banner\BannerController@store')->name('store.banner');
+Route::post('/delete-banner','Admin\Banner\BannerController@destroy');

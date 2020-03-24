@@ -9,6 +9,6 @@
   color:red;
 }
 
-.delete-user{
+.delete-user ,.delete-banner,.delete-category{
   cursor: pointer;
 }

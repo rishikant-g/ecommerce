@@ -24,13 +24,19 @@ class UserController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-
-                    $btn = '<a href="edit/'.$row->id.'/user"><i class="fas fa-edit"></i></a>';
+                    $btn = '<a href="/edit/'.$row->id.'/user"><i class="fas fa-edit"></i></a>';
                     $btn .= '&nbsp;&nbsp;<i class="fas fa-trash-alt delete-user" data-id="'.$row->id.'"></i>';
 
                     return $btn;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('role',function($user){
+                    $user_role = '';
+                    foreach($user->roles as $role){
+                        $user_role .=$role->role_name;
+                    }
+                    return $user_role;
+                })
+                ->rawColumns(['role','action'])
                 ->toJson();
         }
 

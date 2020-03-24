@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Auth\Access\Response;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
         Schema::defaultStringLength(191);
 
-        //
+        Gate::define('add-category', function ($user) {
+            return $user->isAdmin
+                        ? Response::allow()
+                        : Response::deny('You must be a  administrator.');
+        });
     }
 }

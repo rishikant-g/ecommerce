@@ -10,6 +10,7 @@ $(document).ready(function(){
                 {data: 'first_name', name: 'first_name'},
                 {data: 'last_name', name: 'last_name'},
                 {data: 'email', name: 'email'},
+                {data: 'role', name: 'role'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
@@ -39,6 +40,7 @@ function ajaxMessage(data){
 $(document).on('click','.delete-user',function(){
     var id = $(this).data('id');
     bootbox.confirm( "Are you sure , You want to delete ?", function(result){
+        if(!result) return;
         $.ajax({
                 url : '/delete-user',
                 type : 'post',
@@ -59,7 +61,7 @@ $(document).on('click','.delete-user',function(){
 
   $(document).ready(function(){
 
-    // Get user ajax 
+    // Get category ajax 
         var table = $('.category-table').DataTable({
             processing: true,
             serverSide: true,
@@ -75,11 +77,14 @@ $(document).on('click','.delete-user',function(){
 
 
 
-// delete user
+
+
+// delete Category
 
 $(document).on('click','.delete-category',function(){
     var id = $(this).data('id');
     bootbox.confirm( "Are you sure , You want to delete ?", function(result){
+        if(!result) return;
         $.ajax({
                 url : '/delete-category',
                 type : 'post',
@@ -96,3 +101,50 @@ $(document).on('click','.delete-category',function(){
             });
     });
   });
+
+
+
+
+  $(document).ready(function(){
+
+    // Get banner ajax 
+        var table = $('.banner-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "/manage-banner",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'banner_name', name: 'banner_name'},
+                {data: 'banner_preview', name: 'banner_preview'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+            ]
+        });
+});
+
+
+
+
+// delete banner
+
+$(document).on('click','.delete-banner',function(){
+    var id = $(this).data('id');
+    bootbox.confirm( "Are you sure , You want to delete ?", function(result){
+        if(!result) return;
+        $.ajax({
+                url : '/delete-banner',
+                type : 'post',
+                data : {id : id},
+                success: function(data){
+                    ajaxMessage(data); 
+                },
+                error: function(data){
+                    bootbox.alert({
+                        title: "Error",
+                        message: "Something went wrong",
+                    })
+                }
+            });
+    });
+  });
+
+

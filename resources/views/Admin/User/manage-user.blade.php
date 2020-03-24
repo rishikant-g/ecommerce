@@ -16,6 +16,7 @@
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>
+              <th width="100px">Role</th>
               <th width="100px">Action</th>
           </tr>
           </thead>
