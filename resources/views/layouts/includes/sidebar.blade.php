@@ -24,21 +24,31 @@
               </p>
             </a>
           </li>
-          
           <li class="nav-item">
+            <a href="{{route('managecategory')}}" class="nav-link {{ Route::currentRouteNamed('managecategory') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>Categories</p>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a href="{{route('managebanner')}}" class="nav-link {{ Route::currentRouteNamed('managebanner') ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Banner</p>
+                </a>
+          </li>
+          <li class="nav-item">
+            <a href="pages/widgets.html" class="nav-link">
+              <i class="fas fa-shopping-cart"></i>
+              <p>Products</p>
+            </a>
+          </li>
+         <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="fas fa-shopping-cart"></i>
               <p>Orders</p>
             </a>
           </li>
-          
-          
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>Categories</p>
-            </a>
-          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

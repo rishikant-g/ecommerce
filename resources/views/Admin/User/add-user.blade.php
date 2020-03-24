@@ -1,4 +1,5 @@
 @extends('layouts.app-admin')
+@section('title','Add User')
 @section('content')
 <div class="card card-primary">
     <div class="card-header">

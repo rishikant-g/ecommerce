@@ -8,3 +8,7 @@
 .validation-error{
   color:red;
 }
+
+.delete-user{
+  cursor: pointer;
+}

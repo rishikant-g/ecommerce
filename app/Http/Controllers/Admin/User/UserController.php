@@ -25,7 +25,8 @@ class UserController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
 
-                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                    $btn = '<a href="edit/'.$row->id.'/user"><i class="fas fa-edit"></i></a>';
+                    $btn .= '&nbsp;&nbsp;<i class="fas fa-trash-alt delete-user" data-id="'.$row->id.'"></i>';
 
                     return $btn;
                 })
@@ -44,10 +45,34 @@ class UserController extends Controller
     public function store(\App\Http\Requests\StoreUserRequest $request)
     {
         $request->validated();
-        $request['password'] = Hash::make($request->password);
-        $user = \App\User::create(array_merge($request->all(), ['index' => 'value']));
+      //  $request['password'] = Hash::make($request->password);
+     //   $user = \App\User::create(array_merge($request->all(), ['index' => 'value']));
+     $user = \App\User::create([
+        "first_name" => $request->first_name,
+        "last_name" => $request->last_name,
+        "email" => $request->email,
+        "password" =>  Hash::make($request->password),
+     ]);
         $user->roles()->attach($request->role);
         return redirect()->back()->with('success','User Created');
+    }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+        return response()->json($user);
+    }
+
+    public function deleteUser(Request $request)
+    {
+        try{
+            $user = \App\User::findOrFail($request->id);
+            $user->delete();
+            return response()->json(["status" => true, "message" => "User delted"]);
+        }
+        catch(Exception $ex){
+            return response()->json(["status" => false, "message" => "User not found"]);
+        }
     }
 
    

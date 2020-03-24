@@ -18,15 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// One to one 
-
-Route::get('/show/{id}/user',function($id){
-    return response()->json(User::findOrfail($id)->phone);
-});
-
-
-// Inverse of one to one is belongTo
-
 
 
 Auth::routes(["register" => false]);
@@ -36,3 +27,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/manage-users','Admin\User\UserController@index')->name('manageuser');
 Route::get('/add-users','Admin\User\UserController@create')->name('adduser');
 Route::post('/store-users','Admin\User\UserController@store')->name('storeuser');
+Route::get('/edit/{$id}/user','Admin\User\UserController@show');
+Route::post('/delete-user','Admin\User\UserController@deleteUser');
+
+Route::get('/manage-category','Admin\Category\CategoryController@index')->name('managecategory');
+Route::get('/add-category','Admin\Category\CategoryController@create')->name('create.category');
+Route::post('/store-category','Admin\Category\CategoryController@store')->name('store.category');
+Route::post('/delete-category','Admin\Category\CategoryController@destroy');
+
+
+Route::get('/manage-banner','Admin\Banner\BannerController@index')->name('managebanner');
