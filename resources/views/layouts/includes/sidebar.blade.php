@@ -37,7 +37,7 @@
                 </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="{{ route('manageproduct') }}" class="nav-link">
               <i class="fas fa-shopping-cart"></i>
               <p>Products</p>
             </a>

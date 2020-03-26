@@ -101,10 +101,9 @@ class BannerController extends Controller
            
             $banner->save();
             return redirect()->back()->with('success','Banner saved');
-    }
-    catch(\Exception $ex){
+    }catch(\Exception $ex){
         return back()->with('error',$ex->getMessage() );
-    }
+        }
     }
 
 

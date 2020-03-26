@@ -148,3 +148,58 @@ $(document).on('click','.delete-banner',function(){
   });
 
 
+//Initializing select2 and custom file upload
+
+$(document).ready(function(){
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      });
+
+      $(document).ready(function () {
+        bsCustomFileInput.init();
+      });
+  
+});
+
+
+// Get product ajax 
+$(document).ready(function(){
+        var table = $('.product-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "/products",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'product_title', name: 'product_title'},
+                {data: 'product_description', name: 'product_description'},
+                {data: 'product_price', name: 'product_price'},
+                {data: 'product_category', name: 'product_category'},
+                {data: 'image', name: 'image', orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+            ]
+        });
+});
+
+
+// delete product
+
+$(document).on('click','.delete-product',function(){
+    var id = $(this).data('id');
+    bootbox.confirm( "Are you sure , You want to delete ?", function(result){
+        if(!result) return;
+        $.ajax({
+                url : '/delete-product/'+id,
+                type : 'post',
+                data: {_method: 'delete'},
+                success: function(data){
+                    ajaxMessage(data); 
+                },
+                error: function(data){
+                    bootbox.alert({
+                        title: "Error",
+                        message: "Something went wrong",
+                    })
+                }
+            });
+    });
+  });
