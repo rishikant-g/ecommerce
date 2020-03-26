@@ -86,9 +86,9 @@ $(document).on('click','.delete-category',function(){
     bootbox.confirm( "Are you sure , You want to delete ?", function(result){
         if(!result) return;
         $.ajax({
-                url : '/delete-category',
+                url : '/delete-category/'+id,
                 type : 'post',
-                data : {id : id},
+                data: {_method: 'delete'},
                 success: function(data){
                     ajaxMessage(data); 
                 },

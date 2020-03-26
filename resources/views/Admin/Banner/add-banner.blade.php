@@ -11,11 +11,11 @@
     @csrf
       <div class="card-body">
        <div class="row">
-           <div class="col-md-12">
+           <div class="col-md-6">
             @include('layouts.includes.success')
             <div class="form-group">
                 <label for="category_name">Banner Name</label>
-                <input type="text" class="form-control @error('banner_name') is-invalid @enderror" id="banner_name" placeholder="Category name" name="banner_name">
+                <input type="text" class="form-control @error('banner_name') is-invalid @enderror" id="banner_name" placeholder="Banner name" name="banner_name">
                 @error('banner_name')
                     <span class="validation-error">{{ $message }}</span>
                 @enderror
@@ -31,11 +31,13 @@
                         <input type="file" class="custom-file-input" id="exampleInputFile" name="banner_image">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                     </div>
-                    @error('banner_image')
-                      <span class="validation-error">{{ $message }}</span>
-                      @enderror
                     </div>
                 </div>
+                
+                  @error('banner_image')
+                            <span class="validation-error">{{ $message }}</span>
+                  @enderror
+                
             </div>
         </div>
 

@@ -29,7 +29,13 @@ class AuthServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Gate::define('add-category', function ($user) {
-            return $user->isAdmin
+            $check = 0;
+            foreach($user->roles as $role){
+                if($role->role_name == 'admin'){
+                    $check++;
+                }
+            }
+            return $check > 0
                         ? Response::allow()
                         : Response::deny('You must be a  administrator.');
         });

@@ -15,7 +15,8 @@
             @include('layouts.includes.success')
             <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
-                <input type="email" class="form-control @error('first_name') is-invalid @enderror" id="exampleInputEmail1" placeholder="First Name" name="first_name">
+                <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="exampleInputEmail1"
+                 placeholder="First Name" name="first_name"  value="{{old('first_name')}}">
                 @error('first_name')
                     <span class="validation-error">{{ $message }}</span>
                 @enderror
@@ -26,7 +27,8 @@
            <div class="col-md-12">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Last Name</label>
-                    <input type="email" class="form-control @error('last_name') is-invalid @enderror" id="exampleInputEmail1" placeholder="Enter email" name="last_name">
+                    <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="exampleInputEmail1"
+                     placeholder="Last name" name="last_name" value="{{old('last_name')}}">
                     @error('last_name')
                          <span class="validation-error">{{ $message }}</span>
                     @enderror
@@ -37,7 +39,8 @@
            <div class="col-md-12">
                 <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" placeholder="Enter email" name="email">
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" 
+                placeholder="Enter email" name="email"  value="{{old('email')}}">
                 @error('email')
                          <span class="validation-error">{{ $message }}</span>
                 @enderror
@@ -91,7 +94,7 @@
             <div class="col-sm-6">
               <!-- select -->
               <div class="form-group">
-                <label>Custom Select</label>
+                <label>Role</label>
                 <select class="custom-select" name="role">
                   <option>Select Role</option>
                     @foreach($roles as $role)

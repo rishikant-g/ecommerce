@@ -22,7 +22,7 @@ class BannerController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
 
-                    $btn = '<a href="edit/'.$row->id.'/user"><i class="fas fa-edit"></i></a>';
+                    $btn = '<a href="/edit/'.$row->id.'/banner"><i class="fas fa-edit"></i></a>';
                     $btn .= '&nbsp;&nbsp;<i class="fas fa-trash-alt delete-banner" data-id="'.$row->id.'"></i>';
                     return $btn;
                 }) ->addColumn('banner_preview', function($image){
@@ -66,6 +66,47 @@ class BannerController extends Controller
             return back()->with('error',$ex->getMessage() );
         }
     }
+
+    public function edit($id)
+    {
+        $banner = Banner::findOrFail($id);
+        try{
+            return view('Admin.Banner.edit-banner')->with('banner',$banner);
+        }catch(\Exception $ex){
+            return redirect()->back()->with('error',$ex->getMessage());
+        }
+        
+    }
+
+    public function update($id, Request $request)
+    {
+        $request->validate( [
+            'banner_name' => 'required|string|max:255|unique:banners,banner_name,'.$id,
+        ]);
+
+        $banner = Banner::findOrFail($id);
+
+        try{
+            $name = '';
+            if ($request->hasFile('banner_image')) {
+                $image = $request->file('banner_image');
+                $name = time().'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/storage/banner/');
+                $image->move($destinationPath, $name);
+            }
+            $banner->banner_name =  $request->banner_name;
+            if(!empty($name)){
+                $banner->banner_image = $name ;
+            }
+           
+            $banner->save();
+            return redirect()->back()->with('success','Banner saved');
+    }
+    catch(\Exception $ex){
+        return back()->with('error',$ex->getMessage() );
+    }
+    }
+
 
     public function destroy(Request $request)
     {

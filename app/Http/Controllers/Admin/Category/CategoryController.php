@@ -25,7 +25,7 @@ class CategoryController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
 
-                    $btn = '<a href="edit/'.$row->id.'/user"><i class="fas fa-edit"></i></a>';
+                    $btn = '<a href="edit/'.$row->id.'/category"><i class="fas fa-edit"></i></a>';
                     $btn .= '&nbsp;&nbsp;<i class="fas fa-trash-alt delete-category" data-id="'.$row->id.'"></i>';
 
                     return $btn;
@@ -69,17 +69,40 @@ class CategoryController extends Controller
 
     }
 
-    public function destroy(Request $request)
+    public function edit($id)
     {
-        try{
-            $category = Category::findOrFail($request->id);
-            $category->delete();
-            return response()->json(['status' => true, 'message' => "Category deleted"]);
-        }
-        catch(\Exception $ex){
-            return response()->json(['status' => false, 'message' => $ex->getMessage()]);
-        }
+            $category = Category::findOrFail($id);
+            return view('Admin.Category.edit-category')->with('category',$category);
         
-
     }
+
+    public function update(Request $request , $id)
+    {
+        $request->validate([
+            'category_name' => ['required','string','max:255','unique:categories'],
+        ]);
+
+        $category = Category::findOrFail($id);
+        try{
+            $category->category_name = $request->category_name;
+            $category->save();
+            return redirect()->back()->with('success','Category Updated');
+        }catch(\Exception $ex){
+            return redirect()->back()->with('error',$ex->getMessage());
+        }
+    }
+
+
+
+    public function destroy(Request $request,$id)
+    {
+            try{
+                $category = Category::findOrFail($id);
+                $category->delete();
+                return response()->json(['status' => true, 'message' => "Category deleted"]);
+            }
+            catch(\Exception $ex){
+                return response()->json(['status' => false, 'message' => 'Invalid category id']);
+            }  
+        } 
 }
