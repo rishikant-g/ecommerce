@@ -78,20 +78,23 @@ class ProductController extends Controller
 
                 $product->categories()->attach($request->categories);
 
-                
+                $arr=[];
                 $images = $request->file('product_images');
-                if ($request->hasFile('product_images')) :
-                    foreach ($images as $item):
+                if ($request->hasFile('product_images')) {
+                    foreach ($images as $item){
                         $var = date_create();
                         $time = date_format($var, 'YmdHis');
                         $imageName = $time . '-' . $item->getClientOriginalName();
                         $item->move(public_path('/storage/products/'), $imageName);
                         $arr[] = $imageName;
-                    endforeach;
+                    }
                 $image = implode(",", $arr);
-                else:
-                $image = '';
-                endif;
+                }
+                else{
+                    $image = '';
+                }
+               
+                
                 foreach($arr as $img){
                 Image::create([
                     'product_id' => $product->id,
