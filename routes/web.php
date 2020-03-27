@@ -54,6 +54,9 @@ Route::get('/edit/{id}/product','Admin\Product\ProductController@edit');
 Route::delete('/delete-product/{id}','Admin\Product\ProductController@destroy');
 
 
+Route::get('/shop/home', 'Shop\HomeController@index');
+
+
 
 
 
