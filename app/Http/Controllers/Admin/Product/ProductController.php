@@ -101,21 +101,10 @@ class ProductController extends Controller
                     'product_image' => $img,
                 ]);
                 }
-
-
-
-
-
-
-
-
-
-
-
                 return redirect()->back()->with('success','Product added');
-        }catch(\Exception $ex){
-                dd($ex);
-            }
+                }catch(\Exception $ex){
+                    dd($ex);
+                }
           
     }
 
@@ -131,6 +120,56 @@ class ProductController extends Controller
         }catch(\Exception $ex){
             return redirect()->back()->with('errors',$ex->getMessage());
         }
+    }
+
+    public function update($id,Request $request)
+    {
+        $request->validate([
+            'product_title' => ['required','string','max:255','unique:products,product_title,'.$id],
+            'product_description' => ['required','string'],
+            'product_price' => ['required','numeric'],
+            'categories' => ['required'],
+            'categories.*' => ['integer'],
+        ]);
+            $product = Product::findOrFail($id);
+        try{
+            
+                $product->product_title = $request->product_title;
+                $product->product_description = $request->product_description;
+                $product->product_price = $request->product_price;
+                $product->save();
+
+            $product->categories()->sync($request->categories);
+
+            $arr=[];
+            $images = $request->file('product_images');
+            if ($request->hasFile('product_images')) {
+                foreach ($images as $item){
+                    $var = date_create();
+                    $time = date_format($var, 'YmdHis');
+                    $imageName = $time . '-' . $item->getClientOriginalName();
+                    $item->move(public_path('/storage/products/'), $imageName);
+                    $arr[] = $imageName;
+                }
+            $image = implode(",", $arr);
+            }
+            else{
+                $image = '';
+            }
+           
+            
+            foreach($arr as $img){
+            Image::create([
+                'product_id' => $product->id,
+                'product_image' => $img,
+            ]);
+            }
+            return redirect()->back()->with('success','Product added');
+            }catch(\Exception $ex){
+                dd($ex);
+            }
+
+
     }
 
     public function destroy($id)

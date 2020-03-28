@@ -14,9 +14,7 @@ use App\Phone;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Shop\HomeController@index');
 
 
 
@@ -51,6 +49,7 @@ Route::get('/products','Admin\Product\ProductController@index')->name('managepro
 Route::get('/create-product','Admin\Product\ProductController@create')->name('create.product');
 Route::post('/store-product','Admin\Product\ProductController@store')->name('store.product');
 Route::get('/edit/{id}/product','Admin\Product\ProductController@edit');
+Route::put('/update/{id}/product','Admin\Product\ProductController@update');
 Route::delete('/delete-product/{id}','Admin\Product\ProductController@destroy');
 
 

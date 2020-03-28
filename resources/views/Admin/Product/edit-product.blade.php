@@ -7,8 +7,9 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-<form role="form" action ="{{route("store.product") }}" method="post" enctype="multipart/form-data">
+<form role="form" action ="/update/{{$product->id}}/product" method="post" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
       <div class="card-body">
        <div class="row">
            <div class="col-md-12">
