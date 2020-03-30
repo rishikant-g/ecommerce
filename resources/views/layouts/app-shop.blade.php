@@ -30,6 +30,7 @@
 <script src="{{ asset('assets/front/js/price-range.js')}}"></script>
 <script src="{{ asset('assets/front/js/jquery.prettyPhoto.js')}}"></script>
 <script src="{{ asset('assets/front/js/main.js') }}"></script>
+<script src="{{ asset('js/customer.js') }}"></script>
 <script>
 $.ajaxSetup({
     headers: {

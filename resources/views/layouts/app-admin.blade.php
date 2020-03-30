@@ -101,7 +101,7 @@
 
 
 
-<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/admin.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script>

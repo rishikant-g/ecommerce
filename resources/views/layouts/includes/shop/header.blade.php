@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                    <a href="{{route('home')}}"><img src="{{url('storage/front/images/home/logo.png') }}" alt="" /></a>
+                    <a href="/shop/home"><img src="{{url('storage/front/images/home/logo.png') }}" alt="" /></a>
                     </div>
                 </div>
                 <div class="col-sm-8">

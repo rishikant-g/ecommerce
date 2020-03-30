@@ -1,5 +1,6 @@
 @extends('layouts.app-shop')
 @section('content')
+@section('title','Demo Ecommerce Site')
 <section id="slider"><!--slider-->
     <div class="container">
         <div class="row">
@@ -78,25 +79,20 @@
                     @foreach($products as $product)
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
-                            <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        @if(!empty($product->image[0]))
-                                            <img src="{{url('storage/products/'.$product->image[0]->product_image)}}" alt="" style="width:245px;height:225px;"/>
-                                            @else
-                                            <img src="{{url('storage/products/default.jpg')}}" alt="" style="width:245px;height:225px;"/>
-                                        @endif
-                                    <h2>&#8360 {{$product->product_price}}</h2>
-                                    <p>{{$product->product_title}}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>&#8360 {{$product->product_price}}</h2>
-                                            <p>{{$product->product_title}}</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <a href ="/product/{{$product->id}}/details">
+                                <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            @if(!empty($product->image[0]))
+                                                <img src="{{url('storage/products/'.$product->image[0]->product_image)}}" alt="" style="width:245px;height:225px;"/>
+                                                @else
+                                                <img src="{{url('storage/products/default.jpg')}}" alt="" style="width:245px;height:225px;"/>
+                                            @endif
+                                        <h2>&#8360 {{$product->product_price}}</h2>
+                                        <p>{{$product->product_title}}</p>
+                                        <a href="javascript:void(0)" class="btn btn-default add-to-cart" data-product-id="{{$product->id}}"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
-                                    </div>
-                            </div>
+                                </div>
+                              </a>
                             <div class="choose">
                                 <ul class="nav nav-pills nav-justified">
                                     <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
@@ -107,7 +103,7 @@
                     </div>  
                     @endforeach                  
                 </div><!--features_items-->
-                <div class="recommended_items"><!--recommended_items-->
+                {{-- <div class="recommended_items"><!--recommended_items-->
                     <h2 class="title text-center">recommended items</h2>
                     
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
@@ -202,7 +198,7 @@
                             <i class="fa fa-angle-right"></i>
                           </a>			
                     </div>
-                </div><!--/recommended_items-->
+                </div><!--/recommended_items--> --}}
                 
             </div>
         </div>

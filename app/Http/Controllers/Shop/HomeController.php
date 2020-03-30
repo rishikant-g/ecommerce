@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         $banners = Banner::orderBy('id','desc')->limit(3)->get();
         $categories = Category::orderBy('category_name','asc')->get();
-        $products = Product::orderBy('id','desc')->limit(6)->get();
+        $products = Product::orderBy('id','desc')->limit(9)->get();
         $prd = [];
         $i=0;
         foreach($products as $product){
@@ -37,4 +37,20 @@ class HomeController extends Controller
         return view('Shop.home')->with('banners',$banners)->with('categories',$categories)
         ->with('products',$final_data);
     }
+
+    public function productDetails($id)
+    {
+        $categories = Category::orderBy('category_name','asc')->get();
+        Product::findOrFail($id);
+        $product = Product::find($id);
+      
+        $data = Image::where(['product_id' => $product->id])->get();
+        $prd['product']=$product;
+        $prd['product']['image']=$data;
+            
+    
+        return view('Shop.product-details')->with('categories',$categories)
+        ->with('product',$prd);
+    }
+
 }
