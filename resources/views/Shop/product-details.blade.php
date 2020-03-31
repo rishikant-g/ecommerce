@@ -71,8 +71,8 @@
                                 <span>
                                 <span>{{$p->product_price}}</span>
                                     <label>Quantity:</label>
-                                    <input type="text" value="3" />
-                                    <button type="button" class="btn btn-fefault cart">
+                                    <input type="text" value="1" id="quantity"/>
+                                <button type="button" class="btn btn-fefault cart add-to-cart" data-product-id="{{$p->id}}">
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to cart
                                     </button>

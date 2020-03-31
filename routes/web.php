@@ -58,6 +58,9 @@ Route::get('/shop/home', 'Shop\HomeController@index');
 // user routes 
 
 Route::get('/product/{id}/details','Shop\HomeController@productDetails');
+Route::post('/add-to-cart','Customer\CartController@addToCart');
+Route::get('/cart-details','Customer\CartController@index');
+
 
 
 

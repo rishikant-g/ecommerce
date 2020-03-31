@@ -18,7 +18,9 @@
     <link href="{{ asset('assets/front/css/animate.css')}}" rel="stylesheet">
 	<link href="{{ asset('assets/front/css/main.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/front/css/responsive.css')}}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link href="{{ asset('css/customer.css')}}" rel="stylesheet">
 </head>
 <body>
     @include('layouts.includes.shop.header')	
@@ -31,6 +33,8 @@
 <script src="{{ asset('assets/front/js/jquery.prettyPhoto.js')}}"></script>
 <script src="{{ asset('assets/front/js/main.js') }}"></script>
 <script src="{{ asset('js/customer.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script>
 $.ajaxSetup({
     headers: {
