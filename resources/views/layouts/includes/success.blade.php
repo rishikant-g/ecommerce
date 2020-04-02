@@ -4,7 +4,7 @@
         <strong>{{ session()->get('success') }}</strong> 
     </div>
 @endif
-@if(isset($errors))
+{{-- @if(isset($errors))
     @if(count($errors)>0)
         @foreach($errors->all() as $error)
             <div class="alert alert-danger alert-dismissible">
@@ -13,5 +13,5 @@
             </div>
         @endforeach
     @endif
-@endif
+@endif --}}
 

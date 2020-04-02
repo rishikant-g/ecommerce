@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Hash;
+use App\Role;
 
 class CustomerController extends Controller
 {
@@ -20,6 +21,8 @@ class CustomerController extends Controller
 
        $request['password'] = Hash::make($request->password);
        $user = \App\User::create(array_merge($request->all(), ['index' => 'value']));
+       $role= Role::where(['role_name' => 'customer'])->select('id')->get();
+       $user->roles()->attach($role);
        return redirect()->route('login')->with('success','User created');
         }
         catch(\Exception $ex){
