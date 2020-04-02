@@ -55,13 +55,7 @@ class UserController extends Controller
         $request->validated();
        $request['password'] = Hash::make($request->password);
        $user = \App\User::create(array_merge($request->all(), ['index' => 'value']));
-    //  $user = \App\User::create([
-    //     "first_name" => $request->first_name,
-    //     "last_name" => $request->last_name,
-    //     "email" => $request->email,
-    //     "password" =>  Hash::make($request->password),
-    //  ]);
-        $user->roles()->attach($request->role);
+        $user->roles()->attach('5');
         return redirect()->back()->with('success','User Created');
     }
 

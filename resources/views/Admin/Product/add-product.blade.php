@@ -47,6 +47,19 @@
                 </div>
            </div>
         </div>
+        
+        <div class="row">
+           <div class="col-md-12">
+                <div class="form-group">
+                <label for="product_quantity">Product Quantity</label>
+                <input type="text" class="form-control @error('product_quantity') is-invalid @enderror" id="product_quantity" 
+                placeholder="Enter email" name="product_quantity"  value="{{old('product_quantity')}}">
+                @error('product_quantity')
+                         <span class="validation-error">{{ $message }}</span>
+                @enderror
+                </div>
+           </div>
+        </div>
           <div class="row">
               <div class="col-md-6">
                 <div class="form-group">

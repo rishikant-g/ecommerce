@@ -173,6 +173,7 @@ $(document).ready(function(){
                 {data: 'product_title', name: 'product_title'},
                 {data: 'product_description', name: 'product_description'},
                 {data: 'product_price', name: 'product_price'},
+                {data: 'product_quantity', name: 'product_quantity'},
                 {data: 'product_category', name: 'product_category'},
                 {data: 'image', name: 'image', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},

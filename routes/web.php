@@ -60,6 +60,13 @@ Route::get('/shop/home', 'Shop\HomeController@index');
 Route::get('/product/{id}/details','Shop\HomeController@productDetails');
 Route::post('/add-to-cart','Customer\CartController@addToCart');
 Route::get('/cart-details','Customer\CartController@index');
+Route::delete('/cart/delete/{id}','Customer\CartController@deleteCart');
+Route::get('/checkout','Customer\CheckoutController@index');
+
+
+
+Route::get('/register-customer','Customer\CustomerController@index')->name('customer.register');
+Route::post('/store-customer','Customer\CustomerController@store')->name('store.customer');
 
 
 

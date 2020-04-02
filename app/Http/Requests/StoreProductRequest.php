@@ -27,6 +27,7 @@ class StoreProductRequest extends FormRequest
             'product_title' => ['required','string','max:255','unique:products'],
             'product_description' => ['required','string'],
             'product_price' => ['required','numeric'],
+            'product_quantity' => ['required','integer'],
             'categories' => ['required'],
             'categories.*' => ['integer'],
         ];

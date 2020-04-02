@@ -27,7 +27,7 @@
                         <td class="cart_product">
                   
                             @if(!empty($cart->images))
-                             <img src="{{url('storage/products/'.$cart->images->product_image )}}" alt="" style="width:245px;height:225px;"/>
+                             <img src="{{url('storage/products/'.$cart->images->product_image )}}" alt="" style="width:145px;height:125px;"/>
                             @else
                                 <img src="{{url('storage/products/default.jpg')}}" alt="" style="width:245px;height:225px;"/>
                             @endif
@@ -41,21 +41,22 @@
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href=""> + </a>
+                                <a class="cart_quantity_up" href="javascript:void(0)" data-product-price="{{$cart->product_price}}"> + </a>
                                 <input class="cart_quantity_input" type="text" name="quantity" value="{{$cart->quantity}}" autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href=""> - </a>
+                                <a class="cart_quantity_down" href="javascript:void(0)" data-product-price="{{$cart->product_price}}"> - </a>
                             </div>
                         </td>
                         <td class="cart_total">
                             <p class="cart_total_price">&#8360 {{ $cart->product_price * $cart->quantity }}</p>
                         </td>
-                        <td class="cart_delete">
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                        <td class="cart_delete" data-product-id="{{$cart->id}}">
+                            <a class="cart_quantity_delete" href="javascript:void(0)"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            <a class="btn btn-default check_out pull-right" href="/checkout">Check Out</a>
         </div>
     </div>
 </section> <!--/#cart_items-->

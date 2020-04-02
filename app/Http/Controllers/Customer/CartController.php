@@ -56,4 +56,16 @@ class CartController extends Controller
         // $count = Cart::sum('quantity');
         return response()->json(['status' => true, 'message'=> 'added to cart','count' => $count]);
     }
+
+    public function deleteCart($id)
+    {
+        if(Cart::where(['product_id' => $id])->delete()){
+            return response()->json(['status' => true, 'message' => 'deleted']);
+        }else{
+            return response()->json(['status' => false, 'message' => 'Something went wrong']);
+        }
+
+    }
+
+
 }

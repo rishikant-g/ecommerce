@@ -74,6 +74,7 @@ class ProductController extends Controller
                     'product_title' => $request->product_title,
                     'product_description' => $request->product_description,
                     'product_price' => $request->product_price,
+                    'product_quantity' => $request->product_quantity,
                  ]);
 
                 $product->categories()->attach($request->categories);
@@ -128,6 +129,7 @@ class ProductController extends Controller
             'product_title' => ['required','string','max:255','unique:products,product_title,'.$id],
             'product_description' => ['required','string'],
             'product_price' => ['required','numeric'],
+            'product_quantity' => ['required','integer'],
             'categories' => ['required'],
             'categories.*' => ['integer'],
         ]);
@@ -137,6 +139,7 @@ class ProductController extends Controller
                 $product->product_title = $request->product_title;
                 $product->product_description = $request->product_description;
                 $product->product_price = $request->product_price;
+                $product->product_quantity = $request->product_quantity;
                 $product->save();
 
             $product->categories()->sync($request->categories);

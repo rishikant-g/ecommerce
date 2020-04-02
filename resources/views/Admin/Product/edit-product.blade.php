@@ -48,6 +48,19 @@
                 </div>
            </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="form-group">
+                 <label for="product_quantity">Product Quantity</label>
+                 <input type="text" class="form-control @error('product_quantity') is-invalid @enderror" id="product_quantity" 
+                 placeholder="Enter email" name="product_quantity"  value="{{$product->product_quantity}}">
+                 @error('product_quantity')
+                          <span class="validation-error">{{ $message }}</span>
+                 @enderror
+                 </div>
+            </div>
+         </div>
+
           <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -92,8 +105,13 @@
 
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-2">
                         <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="col-md-10">
+                    @foreach($images as $image)
+                        <img src="{{url('storage/products/'.$image->product_image)}}" style="width:50px;height:60px;margin:10px;"/>
+                    @endforeach
                 </div>
             </div>
       </div>
