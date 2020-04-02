@@ -16,7 +16,7 @@ class CartController extends Controller
     public function index()
     {
         // $products = Cart::sum('quantity')->groupBy('product_id');
-        $products = Cart::groupBy('product_id')->selectRaw('product_id,sum(quantity) as sum')->get();
+        $products = Cart::groupBy('product_id')->where(['session_id' => Session('sessionId')])->selectRaw('product_id,sum(quantity) as sum')->get();
         $data = [];
         foreach($products as $p){
             $product = Product::find($p->product_id);
@@ -35,9 +35,8 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        // $sessionId =  config('custom.sessionId');
-        $sessionId =Session::getId();
-        Session('sessionId',$sessionId);
+        $sessionId =Session('sessionId');
+    
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|integer|exists:products,id',
             'quantity' => 'required|integer|min:1',
@@ -59,7 +58,7 @@ class CartController extends Controller
 
     public function deleteCart($id)
     {
-        if(Cart::where(['product_id' => $id])->delete()){
+        if(Cart::where(['product_id' => $id,'session_id' => Session('sessionId')])->delete()){
             return response()->json(['status' => true, 'message' => 'deleted']);
         }else{
             return response()->json(['status' => false, 'message' => 'Something went wrong']);
@@ -67,5 +66,27 @@ class CartController extends Controller
 
     }
 
+    public function updateCart(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|integer|exists:products,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status' => false, 'message' => $validator->errors()->first()]);
+        }
+
+        try{
+            Cart::where(['product_id' => $request->product_id,'session_id' => Session('sessionId')])
+                  ->update(['quantity' => $request->quantity]);
+                  return response()->json(['status' => true, 'message' => "Quantity udpated"]);
+        }catch(\Exception $ex){
+            return response()->json(['status' => false, 'message' => $ex->getMessage()]);
+        }
+        
+    }
+    
 
 }

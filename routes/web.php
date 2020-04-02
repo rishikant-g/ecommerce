@@ -61,7 +61,9 @@ Route::get('/product/{id}/details','Shop\HomeController@productDetails');
 Route::post('/add-to-cart','Customer\CartController@addToCart');
 Route::get('/cart-details','Customer\CartController@index');
 Route::delete('/cart/delete/{id}','Customer\CartController@deleteCart');
+Route::post('/update-quantity','Customer\CartController@updateCart');
 Route::get('/checkout','Customer\CheckoutController@index');
+
 
 
 

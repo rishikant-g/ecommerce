@@ -27,19 +27,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       
-        $sessionId =  Session('sessionId');
-        // config(['custom.sessionId' => $sessionId]);
-        // echo config('custom.sessionId');exit;
-        // var_dump(config('custom.sessionId'));exit;
-        // if(config('custom.sessionId') == NULL ){
-        //     config(['custom.sessionId' => $sessionId]);
-        // }
+             $sessionId =strtotime(now()).uniqid();
         
-
-        $count = Cart::where(['session_id' => $sessionId])->sum('quantity');
-        // $count = \App\Cart::sum('quantity');
-        // echo $count;exit;
-        View::share('count',$count);
+            if(empty(Session('sessionId'))){
+                Session(['sessionId' => $sessionId]);
+            }
+    
+            view()->composer('*', function ($view) {
+                $sessionId = Session('sessionId');
+                $count = Cart::where(['session_id' => $sessionId])->sum('quantity');
+                $view->with('count', $count);
+            });
     }
 }

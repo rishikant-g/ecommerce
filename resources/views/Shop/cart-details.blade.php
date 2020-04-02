@@ -43,6 +43,7 @@
                             <div class="cart_quantity_button">
                                 <a class="cart_quantity_up" href="javascript:void(0)" data-product-price="{{$cart->product_price}}"> + </a>
                                 <input class="cart_quantity_input" type="text" name="quantity" value="{{$cart->quantity}}" autocomplete="off" size="2">
+                                <input class="cart_product_id" type="hidden"  value="{{$cart->id}}">
                                 <a class="cart_quantity_down" href="javascript:void(0)" data-product-price="{{$cart->product_price}}"> - </a>
                             </div>
                         </td>
