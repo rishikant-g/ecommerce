@@ -10,105 +10,89 @@
             </ol>
         </div><!--/breadcrums-->
 
-        <div class="step-one">
-            <h2 class="heading">Step1</h2>
-        </div>
-        <div class="checkout-options">
-            <h3>New User</h3>
-            <p>Checkout options</p>
-            <ul class="nav">
-                <li>
-                    <label><input type="checkbox"> Register Account</label>
-                </li>
-                <li>
-                    <label><input type="checkbox"> Guest Checkout</label>
-                </li>
-                <li>
-                    <a href=""><i class="fa fa-times"></i>Cancel</a>
-                </li>
-            </ul>
-        </div><!--/checkout-options-->
-
-        <div class="register-req">
-            <p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
-        </div><!--/register-req-->
-
         <div class="shopper-informations">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="shopper-info">
-                        <p>Shopper Information</p>
-                        <form>
-                            <input type="text" placeholder="Display Name">
-                            <input type="text" placeholder="User Name">
-                            <input type="password" placeholder="Password">
-                            <input type="password" placeholder="Confirm password">
-                        </form>
-                        <a class="btn btn-primary" href="">Get Quotes</a>
-                        <a class="btn btn-primary" href="">Continue</a>
-                    </div>
-                </div>
-                <div class="col-sm-5 clearfix">
-                    <div class="bill-to">
-                        <p>Bill To</p>
-                        <div class="form-one">
-                            <form>
-                                <input type="text" placeholder="Company Name">
-                                <input type="text" placeholder="Email*">
-                                <input type="text" placeholder="Title">
-                                <input type="text" placeholder="First Name *">
-                                <input type="text" placeholder="Middle Name">
-                                <input type="text" placeholder="Last Name *">
-                                <input type="text" placeholder="Address 1 *">
-                                <input type="text" placeholder="Address 2">
-                            </form>
+            <form method="post" action="{{route('checkout.process')}}" id="address-form">
+                @csrf
+                <div class="row">
+                    <div class="col-sm-12 clearfix">
+                        <div class="bill-to">
+                            <p>Bill To</p>
                         </div>
-                        <div class="form-two">
-                            <form>
-                                <input type="text" placeholder="Zip / Postal Code *">
-                                <select>
-                                    <option>-- Country --</option>
-                                    <option>United States</option>
-                                    <option>Bangladesh</option>
-                                    <option>UK</option>
-                                    <option>India</option>
-                                    <option>Pakistan</option>
-                                    <option>Ucrane</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
-                                </select>
-                                <select>
-                                    <option>-- State / Province / Region --</option>
-                                    <option>United States</option>
-                                    <option>Bangladesh</option>
-                                    <option>UK</option>
-                                    <option>India</option>
-                                    <option>Pakistan</option>
-                                    <option>Ucrane</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
-                                </select>
-                                <input type="password" placeholder="Confirm password">
-                                <input type="text" placeholder="Phone *">
-                                <input type="text" placeholder="Mobile Phone">
-                                <input type="text" placeholder="Fax">
-                            </form>
+                    </div>					
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">First Name</label>
+                        <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="exampleInputPassword1"
+                        placeholder="First Name" name="first_name" value="{{old('first_name')}}">
+                            @error('first_name')
+                                 <span class="validation-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Last Name</label>
+                        <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="exampleInputPassword1"
+                         placeholder="Last Name" name="last_name" value="{{old('last_name')}}">
+                            @error('last_name')
+                                 <span class="validation-error">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="order-message">
-                        <p>Shipping Order</p>
-                        <textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-                        <label><input type="checkbox"> Shipping to bill address</label>
-                    </div>	
-                </div>					
-            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Address</label>
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputPassword1" 
+                        placeholder="Address" name="address" value="{{old('address')}}">
+                            @error('address')
+                                 <span class="validation-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Zip /Postal Code</label>
+                        <input type="text" class="form-control @error('zip_code') is-invalid @enderror" id="exampleInputPassword1" 
+                        placeholder="Zip / Postal Code" name="zip_code" value="{{old('zip_code')}}">
+                            @error('zip_code')
+                                 <span class="validation-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Mobile</label>
+                        <input type="text" class="form-control @error('mobile_number') is-invalid @enderror" id="exampleInputPassword1" 
+                        placeholder="Mobile Number" name="mobile_number" value="{{old('mobile_number')}}">
+                            @error('mobile_number')
+                                 <span class="validation-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Landmark</label>
+                        <textarea class="form-control @error('landmark') is-invalid @enderror" id="exampleInputPassword1" 
+                        placeholder="Landmark" name="landmark">{{old('landmark')}}</textarea>
+                            @error('landmark')
+                                 <span class="validation-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
         </div>
         <div class="review-payment">
             <h2>Review & Payment</h2>
         </div>
-
+ 
         <div class="table-responsive cart_info">
             <table class="table table-condensed">
                 <thead>
@@ -122,82 +106,39 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($carts as $key =>  $cart)
                     <tr>
                         <td class="cart_product">
-                            <a href=""><img src="images/cart/one.png" alt=""></a>
+                  
+                            @if(!empty($cart->images))
+                             <img src="{{url('storage/products/'.$cart->images->product_image )}}" alt="" style="width:145px;height:125px;"/>
+                            @else
+                                <img src="{{url('storage/products/default.jpg')}}" alt="" style="width:245px;height:225px;"/>
+                            @endif
                         </td>
                         <td class="cart_description">
-                            <h4><a href="">Colorblock Scuba</a></h4>
+                            <h4><a href="">{{$cart->product_title}}</a></h4>
                             <p>Web ID: 1089772</p>
                         </td>
                         <td class="cart_price">
-                            <p>$59</p>
+                            <p>&#8360  {{$cart->product_price}}</p>
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href=""> + </a>
-                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href=""> - </a>
+                                <a class="cart_quantity_up" href="javascript:void(0)" data-product-price="{{$cart->product_price}}"> + </a>
+                                <input class="cart_quantity_input" type="text" name="quantity" value="{{$cart->quantity}}" autocomplete="off" size="2">
+                                <input class="cart_product_id" type="hidden"  value="{{$cart->id}}">
+                                <a class="cart_quantity_down" href="javascript:void(0)" data-product-price="{{$cart->product_price}}"> - </a>
                             </div>
                         </td>
                         <td class="cart_total">
-                            <p class="cart_total_price">$59</p>
+                            <p class="cart_total_price">&#8360 {{ $cart->product_price * $cart->quantity }}</p>
                         </td>
-                        <td class="cart_delete">
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="cart_product">
-                            <a href=""><img src="images/cart/two.png" alt=""></a>
-                        </td>
-                        <td class="cart_description">
-                            <h4><a href="">Colorblock Scuba</a></h4>
-                            <p>Web ID: 1089772</p>
-                        </td>
-                        <td class="cart_price">
-                            <p>$59</p>
-                        </td>
-                        <td class="cart_quantity">
-                            <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href=""> + </a>
-                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href=""> - </a>
-                            </div>
-                        </td>
-                        <td class="cart_total">
-                            <p class="cart_total_price">$59</p>
-                        </td>
-                        <td class="cart_delete">
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                        <td class="cart_delete" data-product-id="{{$cart->id}}">
+                            <a class="cart_quantity_delete" href="javascript:void(0)"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="cart_product">
-                            <a href=""><img src="images/cart/three.png" alt=""></a>
-                        </td>
-                        <td class="cart_description">
-                            <h4><a href="">Colorblock Scuba</a></h4>
-                            <p>Web ID: 1089772</p>
-                        </td>
-                        <td class="cart_price">
-                            <p>$59</p>
-                        </td>
-                        <td class="cart_quantity">
-                            <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href=""> + </a>
-                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href=""> - </a>
-                            </div>
-                        </td>
-                        <td class="cart_total">
-                            <p class="cart_total_price">$59</p>
-                        </td>
-                        <td class="cart_delete">
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                        </td>
-                    </tr>
+                    @endforeach
                     <tr>
                         <td colspan="4">&nbsp;</td>
                         <td colspan="2">
@@ -223,18 +164,11 @@
                     </tr>
                 </tbody>
             </table>
+            <a class="btn btn-default check_out pull-right" href="javascipt:void(0)" 
+            onclick="event.preventDefault();
+            document.getElementById('address-form').submit();"
+            >Check Out</a>
         </div>
-        <div class="payment-options">
-                <span>
-                    <label><input type="checkbox"> Direct Bank Transfer</label>
-                </span>
-                <span>
-                    <label><input type="checkbox"> Check Payment</label>
-                </span>
-                <span>
-                    <label><input type="checkbox"> Paypal</label>
-                </span>
-            </div>
     </div>
 </section> <!--/#cart_items-->
 @endsection

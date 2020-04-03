@@ -8,6 +8,9 @@
               <li><a href="#">Home</a></li>
               <li class="active">Shopping Cart</li>
             </ol>
+            @if(\Session::has('message'))
+            <p class="alert {{ \Session::get('alert-class', 'alert-info') }}">{{ \Session::get('message') }}</p>
+            @endif
         </div>
         <div class="table-responsive cart_info">
             <table class="table table-condensed">
@@ -57,7 +60,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <a class="btn btn-default check_out pull-right" href="/checkout">Check Out</a>
+            <a class="btn btn-default check_out pull-right" href="/checkout">Continue</a>
         </div>
     </div>
 </section> <!--/#cart_items-->

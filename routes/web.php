@@ -63,6 +63,7 @@ Route::get('/cart-details','Customer\CartController@index');
 Route::delete('/cart/delete/{id}','Customer\CartController@deleteCart');
 Route::post('/update-quantity','Customer\CartController@updateCart');
 Route::get('/checkout','Customer\CheckoutController@index');
+Route::post('/checkout-process','Customer\CheckoutController@processCheckout')->name('checkout.process');
 
 
 

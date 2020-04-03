@@ -61,6 +61,7 @@ $(".cart_delete").click(function(){
         data: {_method: 'delete'},
         success: function(data){
              $(current_row).closest('tr').hide();
+             $("#lblCartCount").text(data.count);
         },
         error:function(data){
             alert(data.message);

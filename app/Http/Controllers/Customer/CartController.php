@@ -59,7 +59,8 @@ class CartController extends Controller
     public function deleteCart($id)
     {
         if(Cart::where(['product_id' => $id,'session_id' => Session('sessionId')])->delete()){
-            return response()->json(['status' => true, 'message' => 'deleted']);
+            $count = Cart::where(['session_id' => Session('sessionId')])->sum('quantity');
+            return response()->json(['status' => true, 'message' => 'deleted' ,'count' => $count]);
         }else{
             return response()->json(['status' => false, 'message' => 'Something went wrong']);
         }

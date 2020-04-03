@@ -15,7 +15,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('customer');
+        // $this->middleware('customer');
     }
 
     public function index(Request $request)
