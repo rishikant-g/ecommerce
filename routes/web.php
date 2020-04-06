@@ -79,3 +79,6 @@ Route::post('/store-customer','Customer\CustomerController@store')->name('store.
 
 
 
+Route::post('/api/create-payment','Customer\OrderController@createPayment');
+
+Route::post('/api/execute-payment','Customer\OrderController@executePayment');
