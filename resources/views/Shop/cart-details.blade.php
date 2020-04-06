@@ -60,7 +60,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <a class="btn btn-default check_out pull-right" href="/checkout">Continue</a>
+            <a class="btn btn-default check_out pull-right" href="/customer-billing">Continue</a>
         </div>
     </div>
 </section> <!--/#cart_items-->

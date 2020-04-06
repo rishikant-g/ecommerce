@@ -62,9 +62,10 @@ Route::post('/add-to-cart','Customer\CartController@addToCart');
 Route::get('/cart-details','Customer\CartController@index');
 Route::delete('/cart/delete/{id}','Customer\CartController@deleteCart');
 Route::post('/update-quantity','Customer\CartController@updateCart');
-Route::get('/checkout','Customer\CheckoutController@index');
+Route::get('/customer-billing','Customer\CheckoutController@index');
 Route::post('/checkout-process','Customer\CheckoutController@processCheckout')->name('checkout.process');
-
+Route::get('/pay','Customer\CheckoutController@showPaymentPage')->name('showpaymentpage');
+Route::post('dopayment', 'RazorpayController@dopayment')->name('dopayment');
 
 
 

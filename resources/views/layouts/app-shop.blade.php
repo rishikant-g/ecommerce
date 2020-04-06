@@ -35,6 +35,8 @@
 <script src="{{ asset('js/customer.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+{{-- razor pay --}}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 $.ajaxSetup({
     headers: {

@@ -36,13 +36,26 @@ class CheckoutController extends Controller
             $data[$product->id]['quantity']=$p->sum;
             $data[$product->id]['images']=$images;
         }
-        return view('Customer.checkout')->with('carts',$data);
+        $address = Auth::user()->addresses()->orderBy('created_at','DESC')->first();
+    
+        return view('Customer.customer-billing')->with('carts',$data)->with('detail',$address);
     }
 
     public function processCheckout(\App\Http\Requests\StoreCustomerAddress $request)
     {
         $request->validated();
+        try{
         $request['user_id'] = Auth::user()->id;
         Address::create($request->all());
+        return view('Shop.pay');
+        }catch(\Exception $ex){
+            dd($ex);
+        }
+        // return redirect()->route('showpaymentpage');
     }
+
+    // public function showPaymentPage()
+    // {
+    //     return view('Shop.pay');
+    // }
 }

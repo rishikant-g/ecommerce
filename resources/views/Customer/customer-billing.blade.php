@@ -25,7 +25,9 @@
                         <div class="form-group">
                         <label for="exampleInputPassword1">First Name</label>
                         <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="exampleInputPassword1"
-                        placeholder="First Name" name="first_name" value="{{old('first_name')}}">
+                        placeholder="First Name" name="first_name" 
+                        @if(!empty($detail)) value="{{$detail->first_name}}" @else value="{{old('first_name')}}" @endif
+                        >
                             @error('first_name')
                                  <span class="validation-error">{{ $message }}</span>
                             @enderror
@@ -35,7 +37,9 @@
                         <div class="form-group">
                         <label for="exampleInputPassword1">Last Name</label>
                         <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="exampleInputPassword1"
-                         placeholder="Last Name" name="last_name" value="{{old('last_name')}}">
+                         placeholder="Last Name" name="last_name" 
+                         @if(!empty($detail)) value="{{$detail->last_name}}" @else value="{{old('last_name')}}" @endif
+                         >
                             @error('last_name')
                                  <span class="validation-error">{{ $message }}</span>
                             @enderror
@@ -47,7 +51,9 @@
                         <div class="form-group">
                         <label for="exampleInputPassword1">Address</label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputPassword1" 
-                        placeholder="Address" name="address" value="{{old('address')}}">
+                        placeholder="Address" name="address" 
+                        @if(!empty($detail)) value="{{$detail->address}}" @else value="{{old('address')}}" @endif
+                        >
                             @error('address')
                                  <span class="validation-error">{{ $message }}</span>
                             @enderror
@@ -57,7 +63,9 @@
                         <div class="form-group">
                         <label for="exampleInputPassword1">Zip /Postal Code</label>
                         <input type="text" class="form-control @error('zip_code') is-invalid @enderror" id="exampleInputPassword1" 
-                        placeholder="Zip / Postal Code" name="zip_code" value="{{old('zip_code')}}">
+                        placeholder="Zip / Postal Code" name="zip_code" 
+                        @if(!empty($detail)) value="{{$detail->zip_code}}" @else value="{{old('zip_code')}}" @endif
+                        >
                             @error('zip_code')
                                  <span class="validation-error">{{ $message }}</span>
                             @enderror
@@ -69,7 +77,9 @@
                         <div class="form-group">
                         <label for="exampleInputPassword1">Mobile</label>
                         <input type="text" class="form-control @error('mobile_number') is-invalid @enderror" id="exampleInputPassword1" 
-                        placeholder="Mobile Number" name="mobile_number" value="{{old('mobile_number')}}">
+                        placeholder="Mobile Number" name="mobile_number" 
+                        @if(!empty($detail)) value="{{$detail->mobile_number}}" @else value="{{old('mobile_number')}}" @endif
+                        >
                             @error('mobile_number')
                                  <span class="validation-error">{{ $message }}</span>
                             @enderror
@@ -79,7 +89,8 @@
                         <div class="form-group">
                         <label for="exampleInputPassword1">Landmark</label>
                         <textarea class="form-control @error('landmark') is-invalid @enderror" id="exampleInputPassword1" 
-                        placeholder="Landmark" name="landmark">{{old('landmark')}}</textarea>
+                        placeholder="Landmark" name="landmark">@if(!empty($detail)) {{$detail->landmark}} @else {{old('landmark')}} @endif
+                        </textarea>
                             @error('landmark')
                                  <span class="validation-error">{{ $message }}</span>
                             @enderror
